@@ -15,7 +15,7 @@ Microservicio que permite la gestion de usuarios y el control de la autenticacio
 
 - PORT=numero de puerto 
 - DATABASE_URL="postgresql://<usuario>:<contraseña>@<servidor>:<puerto>/<nombre_base_de_datos>?schema=public"
-
+- VALID_EMAIL_DOMAINS="ejm1.com,ejm2.com"
 ### Ejecucion del proyecto para developers
 
 > npm run start:dev

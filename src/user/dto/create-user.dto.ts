@@ -1,4 +1,10 @@
-import { IsEmail, IsEnum, IsString, IsStrongPassword } from 'class-validator';
+import {
+  IsEmail,
+  IsEnum,
+  IsOptional,
+  IsString,
+  IsStrongPassword,
+} from 'class-validator';
 import { UserRole } from './user-role';
 
 export class CreateUserDto {
@@ -20,6 +26,7 @@ export class CreateUserDto {
   @IsEnum(UserRole, { message: 'role must be either ROOT, ADMIN, or USER' })
   role: UserRole;
 
+  @IsOptional()
   @IsString()
-  picture: string;
+  picture?: string;
 }
