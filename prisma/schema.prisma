@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+  moduleFormat    = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role{
+  ROOT
+  ADMIN
+  USER
+}
+
+model User {
+  userid    String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  lastnamefather String
+  lastnamemother String
+  password  String
+  role      Role @default(USER)
+  picture   String
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relacioens con Module
+  createdModules Module[] @relation("UserCreatedModules")
+  updatedModules Module[] @relation("UserUpdatedModules")
+
+  // Relación con Authorizedprmits
+  permissions Authorizedprmits[] @relation("UserPermissions")
+  createdPermissions Authorizedprmits[] @relation("UserCreatedPermissions")
+  updatedPermissions Authorizedprmits[] @relation("UserUpdatedPermissions")
+
+  // Relación con Session
+  sessions Session[] @relation("UserSessions")
+}
+
+model Module {
+  moduleid Int @id @default(autoincrement())
+  name     String
+  description String
+  enabled  Boolean @default(true)
+  createdAt DateTime @default(now())
+  
+  // Relación con User para createdBy
+  creator User @relation("UserCreatedModules", fields: [createdBy], references: [userid])
+  createdBy String
+
+  updatedAt DateTime @updatedAt
+  
+  // Relación con User para updatedBy
+  updater User  @relation("UserUpdatedModules", fields: [updatedBy], references: [userid])
+  updatedBy String
+
+  // Relación con Authorizedprmits
+  permissions Authorizedprmits[] @relation("ModulePermissions")
+}
+
+model Authorizedprmits {
+  authorizedpermitid String @id @default(uuid())
+  
+  // Relación con User para userid
+  user User @relation("UserPermissions", fields: [userid], references: [userid])
+  userid String
+  
+  // Relación con Module para moduleid
+  module Module @relation("ModulePermissions", fields: [moduleid], references: [moduleid])
+  moduleid Int
+
+  view Boolean @default(false)
+  create Boolean @default(false)
+  update Boolean @default(false)
+  delete Boolean @default(false)
+  
+  // Relaciones con user para createdBy y updatedBy
+  createdAt DateTime @default(now())
+  
+  // Relación con User para createdBy
+  creator User @relation("UserCreatedPermissions", fields: [createdBy], references: [userid])
+  createdBy String
+
+  updatedAt DateTime @updatedAt
+  // Relación con User para updatedBy
+  updater User @relation("UserUpdatedPermissions", fields: [updatedBy], references: [userid])
+  updatedBy String
+}
+
+model Session {
+  sessionid String @id @default(uuid())
+  
+  // Relación con User para userid
+  user User @relation("UserSessions", fields: [userid], references: [userid])
+  userid String
+  
+  token String
+  enabled Boolean @default(true)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}

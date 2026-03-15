@@ -13,7 +13,8 @@ Microservicio que permite la gestion de usuarios y el control de la autenticacio
 
 ### Enviroment
 
-> PORT=numero de puerto
+- PORT=numero de puerto 
+- DATABASE_URL="postgresql://<usuario>:<contraseña>@<servidor>:<puerto>/<nombre_base_de_datos>?schema=public"
 
 ### Ejecucion del proyecto para developers
 
