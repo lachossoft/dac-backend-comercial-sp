@@ -1,5 +1,5 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { CreateUserDto } from './dto/';
+import { CreateUserDto, DisableUserDto } from './dto/';
 import { UpdateUserDto } from './dto/';
 import { PaginationDto } from 'src/common/dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -227,8 +227,33 @@ export class UserService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async disable(userid: string, disableUserDto: DisableUserDto) {
+    try {
+      const validUser = await this.findOne(userid);
+      //valida si existe el usuario.
+      if (!validUser) {
+        throw new NotFoundException(`User with ID ${userid} not found`);
+      }
+
+      const userDisable = await this.prisma.user.update({
+        data: disableUserDto,
+        where: {
+          userid: userid,
+        },
+      });
+
+      return {
+        status: true,
+        message: 'The user has been disabled',
+        userDisable: {
+          ...userDisable,
+          createdAt: changeTimeZone(userDisable.createdAt),
+          updatedAt: changeTimeZone(userDisable.updatedAt),
+        },
+      };
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
   private handleError(error: any) {

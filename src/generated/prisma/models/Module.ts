@@ -28,16 +28,19 @@ export type AggregateModule = {
 
 export type ModuleAvgAggregateOutputType = {
   moduleid: number | null
+  cspmoduleid: number | null
 }
 
 export type ModuleSumAggregateOutputType = {
   moduleid: number | null
+  cspmoduleid: number | null
 }
 
 export type ModuleMinAggregateOutputType = {
   moduleid: number | null
   name: string | null
   description: string | null
+  cspmoduleid: number | null
   enabled: boolean | null
   createdAt: Date | null
   createdBy: string | null
@@ -49,6 +52,7 @@ export type ModuleMaxAggregateOutputType = {
   moduleid: number | null
   name: string | null
   description: string | null
+  cspmoduleid: number | null
   enabled: boolean | null
   createdAt: Date | null
   createdBy: string | null
@@ -60,6 +64,7 @@ export type ModuleCountAggregateOutputType = {
   moduleid: number
   name: number
   description: number
+  cspmoduleid: number
   enabled: number
   createdAt: number
   createdBy: number
@@ -71,16 +76,19 @@ export type ModuleCountAggregateOutputType = {
 
 export type ModuleAvgAggregateInputType = {
   moduleid?: true
+  cspmoduleid?: true
 }
 
 export type ModuleSumAggregateInputType = {
   moduleid?: true
+  cspmoduleid?: true
 }
 
 export type ModuleMinAggregateInputType = {
   moduleid?: true
   name?: true
   description?: true
+  cspmoduleid?: true
   enabled?: true
   createdAt?: true
   createdBy?: true
@@ -92,6 +100,7 @@ export type ModuleMaxAggregateInputType = {
   moduleid?: true
   name?: true
   description?: true
+  cspmoduleid?: true
   enabled?: true
   createdAt?: true
   createdBy?: true
@@ -103,6 +112,7 @@ export type ModuleCountAggregateInputType = {
   moduleid?: true
   name?: true
   description?: true
+  cspmoduleid?: true
   enabled?: true
   createdAt?: true
   createdBy?: true
@@ -201,6 +211,7 @@ export type ModuleGroupByOutputType = {
   moduleid: number
   name: string
   description: string
+  cspmoduleid: number
   enabled: boolean
   createdAt: Date
   createdBy: string
@@ -235,6 +246,7 @@ export type ModuleWhereInput = {
   moduleid?: Prisma.IntFilter<"Module"> | number
   name?: Prisma.StringFilter<"Module"> | string
   description?: Prisma.StringFilter<"Module"> | string
+  cspmoduleid?: Prisma.IntFilter<"Module"> | number
   enabled?: Prisma.BoolFilter<"Module"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Module"> | Date | string
   createdBy?: Prisma.StringFilter<"Module"> | string
@@ -249,6 +261,7 @@ export type ModuleOrderByWithRelationInput = {
   moduleid?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  cspmoduleid?: Prisma.SortOrder
   enabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -266,6 +279,7 @@ export type ModuleWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ModuleWhereInput | Prisma.ModuleWhereInput[]
   name?: Prisma.StringFilter<"Module"> | string
   description?: Prisma.StringFilter<"Module"> | string
+  cspmoduleid?: Prisma.IntFilter<"Module"> | number
   enabled?: Prisma.BoolFilter<"Module"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Module"> | Date | string
   createdBy?: Prisma.StringFilter<"Module"> | string
@@ -280,6 +294,7 @@ export type ModuleOrderByWithAggregationInput = {
   moduleid?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  cspmoduleid?: Prisma.SortOrder
   enabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -299,6 +314,7 @@ export type ModuleScalarWhereWithAggregatesInput = {
   moduleid?: Prisma.IntWithAggregatesFilter<"Module"> | number
   name?: Prisma.StringWithAggregatesFilter<"Module"> | string
   description?: Prisma.StringWithAggregatesFilter<"Module"> | string
+  cspmoduleid?: Prisma.IntWithAggregatesFilter<"Module"> | number
   enabled?: Prisma.BoolWithAggregatesFilter<"Module"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Module"> | Date | string
   createdBy?: Prisma.StringWithAggregatesFilter<"Module"> | string
@@ -309,6 +325,7 @@ export type ModuleScalarWhereWithAggregatesInput = {
 export type ModuleCreateInput = {
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -321,6 +338,7 @@ export type ModuleUncheckedCreateInput = {
   moduleid?: number
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   createdBy: string
@@ -332,6 +350,7 @@ export type ModuleUncheckedCreateInput = {
 export type ModuleUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -344,6 +363,7 @@ export type ModuleUncheckedUpdateInput = {
   moduleid?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -356,6 +376,7 @@ export type ModuleCreateManyInput = {
   moduleid?: number
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   createdBy: string
@@ -366,6 +387,7 @@ export type ModuleCreateManyInput = {
 export type ModuleUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -375,6 +397,7 @@ export type ModuleUncheckedUpdateManyInput = {
   moduleid?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -396,6 +419,7 @@ export type ModuleCountOrderByAggregateInput = {
   moduleid?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  cspmoduleid?: Prisma.SortOrder
   enabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -405,12 +429,14 @@ export type ModuleCountOrderByAggregateInput = {
 
 export type ModuleAvgOrderByAggregateInput = {
   moduleid?: Prisma.SortOrder
+  cspmoduleid?: Prisma.SortOrder
 }
 
 export type ModuleMaxOrderByAggregateInput = {
   moduleid?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  cspmoduleid?: Prisma.SortOrder
   enabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -422,6 +448,7 @@ export type ModuleMinOrderByAggregateInput = {
   moduleid?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  cspmoduleid?: Prisma.SortOrder
   enabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -431,6 +458,7 @@ export type ModuleMinOrderByAggregateInput = {
 
 export type ModuleSumOrderByAggregateInput = {
   moduleid?: Prisma.SortOrder
+  cspmoduleid?: Prisma.SortOrder
 }
 
 export type ModuleScalarRelationFilter = {
@@ -547,6 +575,7 @@ export type ModuleUpdateOneRequiredWithoutPermissionsNestedInput = {
 export type ModuleCreateWithoutCreatorInput = {
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -558,6 +587,7 @@ export type ModuleUncheckedCreateWithoutCreatorInput = {
   moduleid?: number
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -578,6 +608,7 @@ export type ModuleCreateManyCreatorInputEnvelope = {
 export type ModuleCreateWithoutUpdaterInput = {
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -589,6 +620,7 @@ export type ModuleUncheckedCreateWithoutUpdaterInput = {
   moduleid?: number
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   createdBy: string
@@ -629,6 +661,7 @@ export type ModuleScalarWhereInput = {
   moduleid?: Prisma.IntFilter<"Module"> | number
   name?: Prisma.StringFilter<"Module"> | string
   description?: Prisma.StringFilter<"Module"> | string
+  cspmoduleid?: Prisma.IntFilter<"Module"> | number
   enabled?: Prisma.BoolFilter<"Module"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Module"> | Date | string
   createdBy?: Prisma.StringFilter<"Module"> | string
@@ -655,6 +688,7 @@ export type ModuleUpdateManyWithWhereWithoutUpdaterInput = {
 export type ModuleCreateWithoutPermissionsInput = {
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -666,6 +700,7 @@ export type ModuleUncheckedCreateWithoutPermissionsInput = {
   moduleid?: number
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   createdBy: string
@@ -692,6 +727,7 @@ export type ModuleUpdateToOneWithWhereWithoutPermissionsInput = {
 export type ModuleUpdateWithoutPermissionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -703,6 +739,7 @@ export type ModuleUncheckedUpdateWithoutPermissionsInput = {
   moduleid?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -714,6 +751,7 @@ export type ModuleCreateManyCreatorInput = {
   moduleid?: number
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -724,6 +762,7 @@ export type ModuleCreateManyUpdaterInput = {
   moduleid?: number
   name: string
   description: string
+  cspmoduleid: number
   enabled?: boolean
   createdAt?: Date | string
   createdBy: string
@@ -733,6 +772,7 @@ export type ModuleCreateManyUpdaterInput = {
 export type ModuleUpdateWithoutCreatorInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -744,6 +784,7 @@ export type ModuleUncheckedUpdateWithoutCreatorInput = {
   moduleid?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -755,6 +796,7 @@ export type ModuleUncheckedUpdateManyWithoutCreatorInput = {
   moduleid?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -764,6 +806,7 @@ export type ModuleUncheckedUpdateManyWithoutCreatorInput = {
 export type ModuleUpdateWithoutUpdaterInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -775,6 +818,7 @@ export type ModuleUncheckedUpdateWithoutUpdaterInput = {
   moduleid?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -786,6 +830,7 @@ export type ModuleUncheckedUpdateManyWithoutUpdaterInput = {
   moduleid?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  cspmoduleid?: Prisma.IntFieldUpdateOperationsInput | number
   enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -827,6 +872,7 @@ export type ModuleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   moduleid?: boolean
   name?: boolean
   description?: boolean
+  cspmoduleid?: boolean
   enabled?: boolean
   createdAt?: boolean
   createdBy?: boolean
@@ -842,6 +888,7 @@ export type ModuleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   moduleid?: boolean
   name?: boolean
   description?: boolean
+  cspmoduleid?: boolean
   enabled?: boolean
   createdAt?: boolean
   createdBy?: boolean
@@ -855,6 +902,7 @@ export type ModuleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   moduleid?: boolean
   name?: boolean
   description?: boolean
+  cspmoduleid?: boolean
   enabled?: boolean
   createdAt?: boolean
   createdBy?: boolean
@@ -868,6 +916,7 @@ export type ModuleSelectScalar = {
   moduleid?: boolean
   name?: boolean
   description?: boolean
+  cspmoduleid?: boolean
   enabled?: boolean
   createdAt?: boolean
   createdBy?: boolean
@@ -875,7 +924,7 @@ export type ModuleSelectScalar = {
   updatedBy?: boolean
 }
 
-export type ModuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"moduleid" | "name" | "description" | "enabled" | "createdAt" | "createdBy" | "updatedAt" | "updatedBy", ExtArgs["result"]["module"]>
+export type ModuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"moduleid" | "name" | "description" | "cspmoduleid" | "enabled" | "createdAt" | "createdBy" | "updatedAt" | "updatedBy", ExtArgs["result"]["module"]>
 export type ModuleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   updater?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -902,6 +951,7 @@ export type $ModulePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     moduleid: number
     name: string
     description: string
+    cspmoduleid: number
     enabled: boolean
     createdAt: Date
     createdBy: string
@@ -1336,6 +1386,7 @@ export interface ModuleFieldRefs {
   readonly moduleid: Prisma.FieldRef<"Module", 'Int'>
   readonly name: Prisma.FieldRef<"Module", 'String'>
   readonly description: Prisma.FieldRef<"Module", 'String'>
+  readonly cspmoduleid: Prisma.FieldRef<"Module", 'Int'>
   readonly enabled: Prisma.FieldRef<"Module", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Module", 'DateTime'>
   readonly createdBy: Prisma.FieldRef<"Module", 'String'>

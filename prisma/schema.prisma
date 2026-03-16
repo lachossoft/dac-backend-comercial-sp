@@ -49,6 +49,7 @@ model Module {
   moduleid Int @id @default(autoincrement())
   name     String
   description String
+  cspmoduleid Int
   enabled  Boolean @default(true)
   createdAt DateTime @default(now())
   

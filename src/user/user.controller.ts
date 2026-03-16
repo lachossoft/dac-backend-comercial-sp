@@ -11,7 +11,7 @@ import {
   UploadedFile,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/';
+import { CreateUserDto, DisableUserDto } from './dto/';
 import { UpdateUserDto } from './dto/';
 import { PaginationDto } from 'src/common/dto';
 import { UploadFile } from 'src/common/decorators';
@@ -53,8 +53,11 @@ export class UserController {
     return this.userService.update(userid, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  @Delete(':userid')
+  disable(
+    @Param('userid', new ParseUUIDPipe()) userid: string,
+    @Body() disableUserDto: DisableUserDto,
+  ) {
+    return this.userService.disable(userid, disableUserDto);
   }
 }

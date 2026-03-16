@@ -94,6 +94,7 @@ export const ModuleScalarFieldEnum = {
   moduleid: 'moduleid',
   name: 'name',
   description: 'description',
+  cspmoduleid: 'cspmoduleid',
   enabled: 'enabled',
   createdAt: 'createdAt',
   createdBy: 'createdBy',

@@ -1,7 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { ModuleService } from './module.service';
 import { CreateModuleDto } from './dto/create-module.dto';
 import { UpdateModuleDto } from './dto/update-module.dto';
+import { PaginationDto } from 'src/common/dto';
 
 @Controller('module')
 export class ModuleController {
@@ -13,8 +23,8 @@ export class ModuleController {
   }
 
   @Get()
-  findAll() {
-    return this.moduleService.findAll();
+  findAll(@Query() paginationDto: PaginationDto) {
+    return this.moduleService.findAll(paginationDto);
   }
 
   @Get(':id')
