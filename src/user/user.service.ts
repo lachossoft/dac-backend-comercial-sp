@@ -210,7 +210,7 @@ export class UserService {
         updateUser: {
           ...updateUser,
           createdAt: changeTimeZone(updateUser.createdAt),
-          updatedAt: changeTimeZone(updateUser.updatedAt)
+          updatedAt: changeTimeZone(updateUser.updatedAt),
         },
       };
     } catch (error) {
