@@ -33,9 +33,12 @@ export class UserController {
     return this.userService.findOne(userid);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  @Patch(':userid')
+  update(
+    @Param('userid', new ParseUUIDPipe()) userid: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return this.userService.update(userid, updateUserDto);
   }
 
   @Delete(':id')

@@ -3,7 +3,7 @@ import { CreateUserDto } from './dto/';
 import { UpdateUserDto } from './dto/';
 import { PaginationDto } from 'src/common/dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { ValidateEmail } from 'src/common';
+import { changeTimeZone, ValidateEmail } from 'src/common';
 import { envs } from 'src/config';
 import * as bcrypt from 'bcrypt';
 
@@ -108,7 +108,6 @@ export class UserService {
   async findAll(paginationDto: PaginationDto) {
     try {
       const { page, limit } = paginationDto;
-      this.logger.log(`pagina ${page} y limite ${limit}`);
       const users = await this.prisma.user
         .findMany({
           select: {
@@ -188,8 +187,31 @@ export class UserService {
     };
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(userid: string, updateUserDto: UpdateUserDto) {
+    try {
+      const validUser = await this.findOne(userid);
+      //valida si existe el usuario.
+      if (!validUser) {
+        throw new NotFoundException(`User with ID ${userid} not found`);
+      }
+      const updateUser = await this.prisma.user.update({
+        data: updateUserDto,
+        where: {
+          userid: userid,
+        },
+      });
+      return {
+        status: true,
+        message: 'The user has been updated',
+        updateUser: {
+          ...updateUser,
+          createdAt: changeTimeZone(updateUser.createdAt),
+          updatedAt: changeTimeZone(updateUser.updatedAt),
+        },
+      };
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
   remove(id: number) {
