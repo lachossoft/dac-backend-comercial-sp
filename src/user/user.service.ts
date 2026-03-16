@@ -85,7 +85,11 @@ export class UserService {
       return {
         success: true,
         message: 'User created successfully',
-        data: newUser,
+        data: {
+          ...newUser.user,
+          createdAt: changeTimeZone(newUser.user.createdAt),
+          updatedAt: changeTimeZone(newUser.user.updatedAt),
+        },
       };
     } catch (error) {
       this.handleError(error);
@@ -206,7 +210,7 @@ export class UserService {
         updateUser: {
           ...updateUser,
           createdAt: changeTimeZone(updateUser.createdAt),
-          updatedAt: changeTimeZone(updateUser.updatedAt),
+          updatedAt: changeTimeZone(updateUser.updatedAt)
         },
       };
     } catch (error) {
