@@ -3,7 +3,7 @@ import { CreateUserDto } from './dto/';
 import { UpdateUserDto } from './dto/';
 import { PaginationDto } from 'src/common/dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { changeTimeZone, ValidateEmail } from 'src/common';
+import { changeTimeZone, deleteFile, ValidateEmail } from 'src/common';
 import { envs } from 'src/config';
 import * as bcrypt from 'bcrypt';
 
@@ -175,6 +175,7 @@ export class UserService {
         lastnamefather: true,
         lastnamemother: true,
         role: true,
+        picture: true,
         enabled: true,
       },
       where: { userid },
@@ -193,10 +194,18 @@ export class UserService {
 
   async update(userid: string, updateUserDto: UpdateUserDto) {
     try {
+      const { picture } = updateUserDto;
       const validUser = await this.findOne(userid);
       //valida si existe el usuario.
       if (!validUser) {
         throw new NotFoundException(`User with ID ${userid} not found`);
+      }
+
+      //se valida que exita la foto antirior y nueva
+      if (picture && validUser.data.picture) {
+        this.logger.log(`picture ${picture}`);
+        this.logger.log(`validUser.picture ${validUser.data.picture}`);
+        deleteFile(envs.profilepicturedirectory, validUser.data.picture);
       }
       const updateUser = await this.prisma.user.update({
         data: updateUserDto,

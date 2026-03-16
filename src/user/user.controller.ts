@@ -8,18 +8,27 @@ import {
   Delete,
   Query,
   ParseUUIDPipe,
+  UploadedFile,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/';
 import { UpdateUserDto } from './dto/';
 import { PaginationDto } from 'src/common/dto';
+import { UploadFile } from 'src/common/decorators';
+import { envs } from 'src/config';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  @UploadFile('picture', envs.profilepicturedirectory) //cargamos el archivo
+  create(
+    @Body() createUserDto: CreateUserDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    console.log(file);
+    if (file) createUserDto.picture = file.filename;
     return this.userService.create(createUserDto);
   }
 
@@ -34,10 +43,13 @@ export class UserController {
   }
 
   @Patch(':userid')
+  @UploadFile('picture', 'profile-pictures')
   update(
     @Param('userid', new ParseUUIDPipe()) userid: string,
     @Body() updateUserDto: UpdateUserDto,
+    @UploadedFile() file: Express.Multer.File,
   ) {
+    if (file) updateUserDto.picture = file.filename;
     return this.userService.update(userid, updateUserDto);
   }
 
